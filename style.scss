@@ -1,0 +1,314 @@
+@font-face {
+    font-family: FuturaLT;
+    src: url(./fonts/FuturaLT-Heavy.woff);
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root.light {
+    --color-bg: #EDEDED;
+    --color-main: #FFFFFF; /* table container & button text */
+    --color-toned-primary: #E7E7E7; /* table border & add button bg */
+    --color-toned-secondary: #D9D9D9; /* add button icon bg & github icon */
+    --color-contrast: #333333; /* light mode toggle & main text color */
+    --color-primary: #D6955B;
+    --color-secondary: #226D68;
+    --color-danger: #BB3434;
+    --modal-bg: #F5F5F5;
+}
+
+:root.dark {
+    --color-bg: #2B2B2B;
+    --color-main: #202020; /* table container & button text */
+    --color-toned-primary: #171717; /* table border & add button bg */
+    --color-toned-secondary: #202020; /* add button icon bg & github icon */
+    --color-contrast: #DEDEDE; /* light mode toggle & main text color */
+    --color-primary: #D6955B;
+    --color-secondary: #226D68;
+    --color-danger: #BB3434;
+    --modal-bg: #2A2A2A;
+}
+
+/* fonts variables */
+$font-primary: 'Montserrat', sans-serif;
+$font-secondary: 'FuturaLT', sans-serif;
+
+/* size variables */
+$size-font-title: 48px;
+$size-font-main: 16px;
+
+/* misc variables */
+$shadow: 0px 0px 58px -25px rgba(75, 75, 75, 0.25);
+
+body {
+    background-color: var(--color-bg);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.button-base {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-primary;
+    cursor: pointer;
+}
+
+header {
+
+    .header__disclaimer {    
+        
+        h1 {
+        color: var(--color-secondary);
+        font-family: $font-secondary;
+        font-size: $size-font-title;
+        }
+
+        p {
+            color: var(--color-primary);
+            font-family: $font-primary;
+            font-size: $size-font-main;
+            margin-bottom: 20px;
+        }
+    }
+
+    .header__button {
+
+        display: flex;
+        gap: 10px;
+        margin-bottom: 40px;
+
+        button {
+            @extend .button-base;
+            height: 35px;
+            width: 35px;
+            background-color: var(--color-toned-secondary);
+            border-radius: 50%;
+
+            svg {
+                stroke: var(--color-contrast);
+            }
+            }
+
+        button#light-mode-toggle {
+            background-color: var(--color-contrast);
+
+            svg {
+                stroke: var(--color-toned-secondary);
+            }
+        }
+
+    }
+
+}
+
+main {
+    background-color: var(--color-main);
+    padding: 20px;
+    border-radius: 25px;
+    font-family: $font-primary;
+    box-shadow: $shadow;
+}
+
+table {
+
+    text-align: left;
+    border-collapse: collapse;
+    min-width: 990px;
+    
+    thead tr {
+        border-bottom: var(--color-toned-primary) solid 1px;
+
+        th {
+            color: var(--color-primary);
+            font-weight: 700;
+            border-left: var(--color-toned-primary) solid 1px;
+            padding: 10px;
+        }
+
+        th:first-child {
+            border: none;
+        }
+    }
+
+    tbody {
+
+        td {
+            border-left: var(--color-toned-primary) solid 1px;
+            padding: 10px;
+            color: var(--color-contrast)
+        }
+
+        td:first-child {
+            border: none;
+            font-weight: 500;
+        }
+
+        td:last-child {
+            position: relative;
+        }
+
+        .delete {
+            @extend .button-base;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-danger);
+            position: absolute;
+            top: 50%;
+            transform:translateY(-50%);
+            right: 10%;
+            border-radius: 50%;
+            display: none;
+        
+            svg {
+                stroke: #FFFFFF;
+            }
+        }
+
+        tr:hover .delete {
+            display: flex;
+        }
+
+        td:nth-child(1),
+        td:nth-child(2) {
+            min-width: 330px;
+        }
+    
+        td:nth-child(3), 
+        td:nth-child(4) {
+            min-width: 130px;
+        }
+
+    }
+    
+    button {
+        @extend .button-base;
+        padding: 2px 10px;
+        border-radius: 40px;
+        color: var(--color-main);
+        font-family: $font-primary;
+    }
+
+    button.--read {
+        background-color: var(--color-secondary);
+    }
+
+    button.--to-read {
+        background-color: var(--color-primary);
+    }
+
+}
+
+.add-button {
+    @extend .button-base;
+    background-color: var(--color-secondary);
+    gap: 5px;
+    padding: 5px 15px 5px 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    color: var(--color-main);
+
+    svg {
+        stroke: var(--color-main);
+    } 
+}
+
+#modal {
+    width: 600px;
+    min-height: 280px;
+    background-color: var(--modal-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: $shadow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100vh);
+
+    #close-modal {
+        @extend .button-base;
+        height: 35px;
+        width: 35px;
+        background: none;
+        border-radius: 50%;
+        position: absolute;
+        right: 40px;
+
+        svg {
+            stroke: var(--color-danger);
+        }
+    }
+
+    h2 {
+        color: var(--color-secondary);
+        font-family: $font-secondary;
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    hr {
+        border-color: var(--color-toned-primary);
+        opacity: 0.3;
+        margin-bottom: 15px;
+    }
+
+    form {
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+
+        .form__group {
+            display: flex;
+            flex-direction: column;
+            width: 48%;
+        }
+
+        label {
+            font-family: $font-primary;
+            color: var(--color-primary);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            font-family: $font-primary;
+            color: var(--color-contrast);
+            background-color: var(--color-main);
+            border: none;
+            border-radius: 40px;
+            padding: 2px 8px;
+        }
+
+        input::placeholder {
+            color: var(--color-contrast);
+            opacity: 0.8;
+            font-family: $font-primary;
+        }
+
+        input:focus, select:focus {
+            border: 1px solid var(--color-primary);
+        }
+
+        button {
+            @extend .button-base, .add-button;
+            margin-top: 10px;
+        }
+    }
+}
+
+#modal.visible {
+        transform: translate(-50%, -50%);
+}
