@@ -1,7 +1,7 @@
 ▶️ [Demo](https://web-lux.github.io/librairie/)
 
 ## 📄 Description
-Une application réalisée dans le cadre de l'[Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-library) afin de pratiquer le javascript vanilla (avec un accent sur les objets et les constructeurs d'objets).
+Une application de bibliothèque minimaliste réalisée dans le cadre de l'[Odin Project](https://www.theodinproject.com/lessons/node-path-javascript-library) afin de pratiquer le javascript vanilla (avec un accent sur les objets et les constructeurs d'objets).
 
 ![Gif de l'application](preview.gif)
 
